@@ -97,7 +97,7 @@ urllib3==1.25.7           # via requests, sentry-sdk
 vasco-lingo==1.1.0        # via supply-and-demand
 voluptuous==0.11.7        # via byflow
 werkzeug==0.16.0          # via flask, flask-caching, flask-jwt-extended
-wtforms            # via flask-admin, flask-wtf
+wtforms==2.3.1            # via flask-admin, flask-wtf
 xmltodict==0.12.0         # via byflow
 zipp==0.6.0               # via importlib-metadata
 zope.deprecation==4.4.0   # via apache-airflow
