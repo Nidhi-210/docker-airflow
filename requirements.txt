@@ -6,8 +6,7 @@ arrow==0.15.2             # via byflow
 attrs==19.3.0             # via jsonschema
 azure-common==1.1.23      # via azure-storage-blob, azure-storage-common
 azure-storage-blob==2.1.0  # via storefact
-azure-storage-common==2.1.0  # via azure-storage-blob
-babel==2.7.0              # via flask-babel
+azure-storage-common==2.1.0  # via azure-storage-blob             # via flask-babel
 byflow==11.1.0
 cached-property==1.5.1    # via apache-airflow
 certifi==2019.9.11        # via requests, sentry-sdk
