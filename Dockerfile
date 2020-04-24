@@ -29,6 +29,7 @@ ENV LC_MESSAGES en_US.UTF-8
 # ENV GUNICORN_CMD_ARGS --log-level WARNING
 RUN mkdir -p ${AIRFLOW_HOME}/.pip
 COPY pip.conf ${AIRFLOW_HOME}/.pip/pip.conf
+RUN cat ${AIRFLOW_HOME}/.pip/pip.conf
 COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
 RUN pip install -r ${AIRFLOW_HOME}/requirements.txt
 RUN set -ex \
