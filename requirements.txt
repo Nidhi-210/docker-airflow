@@ -1,4 +1,3 @@
-arrow!=0.11,!=0.12
 alembic==1.2.1            # via apache-airflow, supply-and-demand
 apache-airflow[crypto,postgres]==1.10.6  # via byflow
 apispec[yaml]==2.0.2      # via flask-appbuilder
