@@ -27,7 +27,9 @@ ENV LC_MESSAGES en_US.UTF-8
 
 # Disable noisy "Handling signal" log messages:
 # ENV GUNICORN_CMD_ARGS --log-level WARNING
-
+RUN mkdir -p ${AIRFLOW_HOME}/.pip
+COPY pip.cong ${AIRFLOW_HOME}/.pip/pip.conf
+COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
 RUN set -ex \
     && buildDeps=' \
         freetds-dev \
@@ -61,6 +63,7 @@ RUN set -ex \
     && pip install pyasn1 \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && pip install 'redis==3.2' \
+    && pip install -r requirements.txt
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get autoremove -yqq --purge \
@@ -72,10 +75,8 @@ RUN set -ex \
         /usr/share/man \
         /usr/share/doc \
         /usr/share/doc-base
-COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
-RUN pip install -r ${AIRFLOW_HOME}/requirements.txt
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
 
 EXPOSE 8080 5555 8793
