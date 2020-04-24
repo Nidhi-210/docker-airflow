@@ -28,7 +28,7 @@ ENV LC_MESSAGES en_US.UTF-8
 # Disable noisy "Handling signal" log messages:
 # ENV GUNICORN_CMD_ARGS --log-level WARNING
 RUN mkdir -p ${AIRFLOW_HOME}/.pip
-COPY pip.cong ${AIRFLOW_HOME}/.pip/pip.conf
+COPY pip.conf ${AIRFLOW_HOME}/.pip/pip.conf
 COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
 RUN set -ex \
     && buildDeps=' \
