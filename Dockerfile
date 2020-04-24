@@ -30,6 +30,7 @@ ENV LC_MESSAGES en_US.UTF-8
 RUN mkdir -p ${AIRFLOW_HOME}/.pip
 COPY pip.conf ${AIRFLOW_HOME}/.pip/pip.conf
 COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
+RUN pip install -r ${AIRFLOW_HOME}/requirements.txt
 RUN set -ex \
     && buildDeps=' \
         freetds-dev \
@@ -63,7 +64,6 @@ RUN set -ex \
     && pip install pyasn1 \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && pip install 'redis==3.2' \
-    && pip install -r ${AIRFLOW_HOME}/requirements.txt \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get autoremove -yqq --purge \
