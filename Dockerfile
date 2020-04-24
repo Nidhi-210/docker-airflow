@@ -32,7 +32,7 @@ COPY pip.conf ${AIRFLOW_HOME}/.pip/pip.conf
 
 RUN ls ${AIRFLOW_HOME}/.pip/pip.conf
 COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
-RUN pip install -r ${AIRFLOW_HOME}/requirements.txt
+#RUN pip install -r ${AIRFLOW_HOME}/requirements.txt
 RUN set -ex \
     && buildDeps=' \
         freetds-dev \
